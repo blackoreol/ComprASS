@@ -47,26 +47,32 @@ namespace ComprASS
                 return;
             }
 
+            // Путь к исполняемому файлу ffmpeg
+            string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
+
+            // Путь к исполняемому файлу ffprobe
+            string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
+
             // Ускорение видео в 4 раза
-            string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=0.2*PTS\" -an \"{outputFilePath}\" -y";
-            RunFFmpegCommand(accelerateArguments);
+            string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=PTS/5\" -an \"{outputFilePath}\" -y";
+            RunFFmpegCommand(ffmpegPath, accelerateArguments);
 
             // Получение длительности ускоренного видео
             string ffprobeArguments = $"-v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 \"{outputFilePath}\"";
-            double duration = GetVideoDuration(ffprobeArguments);
+            double duration = GetVideoDuration(ffprobePath, ffprobeArguments);
 
             // Обрезка последних 3/4 видео
-            string trimArguments = $"-i \"{outputFilePath}\" -t {duration * 0.25} -c:v copy -c:a copy \"{outputFilePath}\" -y";
-            RunFFmpegCommand(trimArguments);
+            string trimArguments = $"-i \"{outputFilePath}\" -t {duration/5} -c:v copy -c:a copy \"{outputFilePath}\" -y";
+            RunFFmpegCommand(ffmpegPath, trimArguments);
 
             MessageBox.Show("Видео успешно ускорено и обрезано.");
         }
 
-        private void RunFFmpegCommand(string arguments)
+        private void RunFFmpegCommand(string ffmpegPath, string arguments)
         {
             using (Process process = new Process())
             {
-                process.StartInfo.FileName = "ffmpeg";
+                process.StartInfo.FileName = ffmpegPath;
                 process.StartInfo.Arguments = arguments;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
@@ -77,11 +83,11 @@ namespace ComprASS
             }
         }
 
-        private double GetVideoDuration(string arguments)
+        private double GetVideoDuration(string ffprobePath, string arguments)
         {
             using (Process process = new Process())
             {
-                process.StartInfo.FileName = "ffprobe";
+                process.StartInfo.FileName = ffprobePath;
                 process.StartInfo.Arguments = arguments;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
