@@ -14,7 +14,21 @@ namespace ComprASS
         {
             InitializeComponent();
         }
+        public int speed;
+        private void Speed2toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            speed = 2;
+        }
 
+        private void Speed4toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            speed = 4;
+        }
+
+        private void Speed10toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            speed = 10;
+        }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -38,36 +52,6 @@ namespace ComprASS
                 }
             }
         }
-
-        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(inputFilePath) || string.IsNullOrEmpty(outputFilePath))
-            {
-                MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
-                return;
-            }
-
-            // Путь к исполняемому файлу ffmpeg
-            string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
-
-            // Путь к исполняемому файлу ffprobe
-            string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
-
-            // Ускорение видео в 4 раза
-            string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=PTS/5\" -an \"{outputFilePath}\" -y";
-            RunFFmpegCommand(ffmpegPath, accelerateArguments);
-
-            // Получение длительности ускоренного видео
-            string ffprobeArguments = $"-v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 \"{outputFilePath}\"";
-            double duration = GetVideoDuration(ffprobePath, ffprobeArguments);
-
-            // Обрезка последних 3/4 видео
-            string trimArguments = $"-i \"{outputFilePath}\" -t {duration/5} -c:v copy -c:a copy \"{outputFilePath}\" -y";
-            RunFFmpegCommand(ffmpegPath, trimArguments);
-
-            MessageBox.Show("Видео успешно ускорено и обрезано.");
-        }
-
         private void RunFFmpegCommand(string ffmpegPath, string arguments)
         {
             using (Process process = new Process())
@@ -104,6 +88,35 @@ namespace ComprASS
 
                 return 0.0;
             }
+        }
+
+        private void LETSGOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(inputFilePath) || string.IsNullOrEmpty(outputFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
+                return;
+            }
+
+            // Путь к исполняемому файлу ffmpeg
+            string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
+
+            // Путь к исполняемому файлу ffprobe
+            string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
+
+            // Ускорение видео в 4 раза
+            string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=PTS/{speed}\" -an \"{outputFilePath}\" -y";
+            RunFFmpegCommand(ffmpegPath, accelerateArguments);
+
+            // Получение длительности ускоренного видео
+            string ffprobeArguments = $"-v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 \"{outputFilePath}\"";
+            double duration = GetVideoDuration(ffprobePath, ffprobeArguments);
+
+            // Обрезка последних 3/4 видео
+            string trimArguments = $"-i \"{outputFilePath}\" -t {duration / speed} -c:v copy -c:a copy \"{outputFilePath}\" -y";
+            RunFFmpegCommand(ffmpegPath, trimArguments);
+
+            MessageBox.Show("Видео успешно ускорено и обрезано.");
         }
     }
 }

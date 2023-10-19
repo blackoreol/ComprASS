@@ -33,7 +33,12 @@
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Speed2toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Speed4toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Speed10toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lETSGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +48,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.lETSGOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(351, 28);
@@ -66,14 +72,53 @@
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.speedToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
+            // 
+            // speedToolStripMenuItem
+            // 
+            this.speedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Speed2toolStripMenuItem2,
+            this.Speed4toolStripMenuItem3,
+            this.Speed10toolStripMenuItem4});
+            this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
+            this.speedToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.speedToolStripMenuItem.Text = "Speed";
+            // 
+            // Speed2toolStripMenuItem2
+            // 
+            this.Speed2toolStripMenuItem2.Name = "Speed2toolStripMenuItem2";
+            this.Speed2toolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.Speed2toolStripMenuItem2.Text = "2";
+            this.Speed2toolStripMenuItem2.Click += new System.EventHandler(this.Speed2toolStripMenuItem2_Click);
+            // 
+            // Speed4toolStripMenuItem3
+            // 
+            this.Speed4toolStripMenuItem3.Name = "Speed4toolStripMenuItem3";
+            this.Speed4toolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
+            this.Speed4toolStripMenuItem3.Text = "4";
+            this.Speed4toolStripMenuItem3.Click += new System.EventHandler(this.Speed4toolStripMenuItem3_Click);
+            // 
+            // Speed10toolStripMenuItem4
+            // 
+            this.Speed10toolStripMenuItem4.Name = "Speed10toolStripMenuItem4";
+            this.Speed10toolStripMenuItem4.Size = new System.Drawing.Size(224, 26);
+            this.Speed10toolStripMenuItem4.Text = "10";
+            this.Speed10toolStripMenuItem4.Click += new System.EventHandler(this.Speed10toolStripMenuItem4_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // lETSGOToolStripMenuItem
+            // 
+            this.lETSGOToolStripMenuItem.Name = "lETSGOToolStripMenuItem";
+            this.lETSGOToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            this.lETSGOToolStripMenuItem.Text = "LETS GO";
+            this.lETSGOToolStripMenuItem.Click += new System.EventHandler(this.LETSGOToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -103,6 +148,11 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem speedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Speed2toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem Speed4toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem Speed10toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem lETSGOToolStripMenuItem;
     }
 }
 
