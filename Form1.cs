@@ -16,17 +16,15 @@ namespace ComprASS
         {
             InitializeComponent();
         }
-        public int speed;
+        private int speed;
         private void Speed2toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             speed = 2;
         }
-
         private void Speed4toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             speed = 4;
         }
-
         private void Speed10toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             speed = 10;
@@ -42,7 +40,6 @@ namespace ComprASS
                 }
             }
         }
-
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -63,7 +60,6 @@ namespace ComprASS
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
-
                 await Task.Run(() => process.Start());
                 await Task.Run(() => process.WaitForExit());
             }
@@ -78,11 +74,9 @@ namespace ComprASS
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
-
                 await Task.Run(() => process.Start());
                 string outputDuration = await Task.Run(() => process.StandardOutput.ReadToEnd());
                 await Task.Run(() => process.WaitForExit());
-
                 if (double.TryParse(outputDuration, out double duration))
                 {
                     return duration;
@@ -94,16 +88,13 @@ namespace ComprASS
 
         private async void LETSGOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.DoEvents();
             if (string.IsNullOrEmpty(inputFilePath) || string.IsNullOrEmpty(outputFilePath))
             {
                 MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
                 return;
             }
             pictureBox1.Image = Resources.billy_herrington_flex;
-            // Путь к исполняемому файлу ffmpeg
             string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
-            // Путь к исполняемому файлу ffprobe
             string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
             // Ускорение видео
             string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=PTS/{speed}\" -an \"{outputFilePath}\" -y";
@@ -115,7 +106,7 @@ namespace ComprASS
             string trimArguments = $"-i \"{outputFilePath}\" -t {duration / speed} -c:v copy -c:a copy \"{outputFilePath}\" -y";
             await RunFFmpegCommand(ffmpegPath, trimArguments);
             pictureBox1.Image = Resources.pngwing_com;
-            MessageBox.Show("Успех");
+            MessageBox.Show("Готово");
         }
 
     }
