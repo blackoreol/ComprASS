@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ComprASS.Properties;
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComprASS
@@ -52,7 +54,7 @@ namespace ComprASS
                 }
             }
         }
-        private void RunFFmpegCommand(string ffmpegPath, string arguments)
+        async Task RunFFmpegCommand(string ffmpegPath, string arguments)
         {
             using (Process process = new Process())
             {
@@ -62,12 +64,12 @@ namespace ComprASS
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
 
-                process.Start();
-                process.WaitForExit();
+                await Task.Run(() => process.Start());
+                await Task.Run(() => process.WaitForExit());
             }
         }
 
-        private double GetVideoDuration(string ffprobePath, string arguments)
+        async Task<double> GetVideoDuration(string ffprobePath, string arguments)
         {
             using (Process process = new Process())
             {
@@ -77,9 +79,9 @@ namespace ComprASS
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
 
-                process.Start();
-                string outputDuration = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
+                await Task.Run(() => process.Start());
+                string outputDuration = await Task.Run(() => process.StandardOutput.ReadToEnd());
+                await Task.Run(() => process.WaitForExit());
 
                 if (double.TryParse(outputDuration, out double duration))
                 {
@@ -90,33 +92,31 @@ namespace ComprASS
             }
         }
 
-        private void LETSGOToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void LETSGOToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Application.DoEvents();
             if (string.IsNullOrEmpty(inputFilePath) || string.IsNullOrEmpty(outputFilePath))
             {
                 MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
                 return;
             }
-
+            pictureBox1.Image = Resources.billy_herrington_flex;
             // Путь к исполняемому файлу ffmpeg
             string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
-
             // Путь к исполняемому файлу ffprobe
             string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
-
-            // Ускорение видео в 4 раза
+            // Ускорение видео
             string accelerateArguments = $"-i \"{inputFilePath}\" -vf \"setpts=PTS/{speed}\" -an \"{outputFilePath}\" -y";
-            RunFFmpegCommand(ffmpegPath, accelerateArguments);
-
+            await RunFFmpegCommand(ffmpegPath, accelerateArguments);
             // Получение длительности ускоренного видео
             string ffprobeArguments = $"-v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 \"{outputFilePath}\"";
-            double duration = GetVideoDuration(ffprobePath, ffprobeArguments);
-
-            // Обрезка последних 3/4 видео
+            double duration = await GetVideoDuration(ffprobePath, ffprobeArguments);
+            // Обрезка
             string trimArguments = $"-i \"{outputFilePath}\" -t {duration / speed} -c:v copy -c:a copy \"{outputFilePath}\" -y";
-            RunFFmpegCommand(ffmpegPath, trimArguments);
-
-            MessageBox.Show("Видео успешно ускорено и обрезано.");
+            await RunFFmpegCommand(ffmpegPath, trimArguments);
+            pictureBox1.Image = Resources.pngwing_com;
+            MessageBox.Show("Успех");
         }
+
     }
 }

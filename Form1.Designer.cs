@@ -37,9 +37,11 @@
             this.Speed2toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.Speed4toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Speed10toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lETSGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -52,7 +54,7 @@
             this.lETSGOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(351, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(318, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,33 +87,29 @@
             this.Speed4toolStripMenuItem3,
             this.Speed10toolStripMenuItem4});
             this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
-            this.speedToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.speedToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.speedToolStripMenuItem.Text = "Speed";
             // 
             // Speed2toolStripMenuItem2
             // 
             this.Speed2toolStripMenuItem2.Name = "Speed2toolStripMenuItem2";
-            this.Speed2toolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.Speed2toolStripMenuItem2.Size = new System.Drawing.Size(108, 26);
             this.Speed2toolStripMenuItem2.Text = "2";
             this.Speed2toolStripMenuItem2.Click += new System.EventHandler(this.Speed2toolStripMenuItem2_Click);
             // 
             // Speed4toolStripMenuItem3
             // 
             this.Speed4toolStripMenuItem3.Name = "Speed4toolStripMenuItem3";
-            this.Speed4toolStripMenuItem3.Size = new System.Drawing.Size(224, 26);
+            this.Speed4toolStripMenuItem3.Size = new System.Drawing.Size(108, 26);
             this.Speed4toolStripMenuItem3.Text = "4";
             this.Speed4toolStripMenuItem3.Click += new System.EventHandler(this.Speed4toolStripMenuItem3_Click);
             // 
             // Speed10toolStripMenuItem4
             // 
             this.Speed10toolStripMenuItem4.Name = "Speed10toolStripMenuItem4";
-            this.Speed10toolStripMenuItem4.Size = new System.Drawing.Size(224, 26);
+            this.Speed10toolStripMenuItem4.Size = new System.Drawing.Size(108, 26);
             this.Speed10toolStripMenuItem4.Text = "10";
             this.Speed10toolStripMenuItem4.Click += new System.EventHandler(this.Speed10toolStripMenuItem4_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // lETSGOToolStripMenuItem
             // 
@@ -120,13 +118,28 @@
             this.lETSGOToolStripMenuItem.Text = "LETS GO";
             this.lETSGOToolStripMenuItem.Click += new System.EventHandler(this.LETSGOToolStripMenuItem_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ComprASS.Properties.Resources.pngwing_com;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(319, 221);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ComprASS.Properties.Resources.pngwing_com;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(351, 450);
+            this.ClientSize = new System.Drawing.Size(318, 249);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -136,6 +149,7 @@
             this.Text = "ComprASS";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,6 +167,7 @@
         private System.Windows.Forms.ToolStripMenuItem Speed4toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem Speed10toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem lETSGOToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
