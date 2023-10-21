@@ -1,5 +1,6 @@
 ﻿using ComprASS.Properties;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace ComprASS
     {
         private string inputFilePath;
         private string outputFilePath;
+        private List<Process> activeProcesses = new List<Process>();
 
         public Form1()
         {
@@ -60,8 +62,10 @@ namespace ComprASS
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
+                activeProcesses.Add(process);
                 await Task.Run(() => process.Start());
                 await Task.Run(() => process.WaitForExit());
+                activeProcesses.Remove(process);
             }
         }
 
@@ -74,9 +78,11 @@ namespace ComprASS
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardOutput = true;
+                activeProcesses.Add(process);
                 await Task.Run(() => process.Start());
                 string outputDuration = await Task.Run(() => process.StandardOutput.ReadToEnd());
                 await Task.Run(() => process.WaitForExit());
+                activeProcesses.Remove(process);
                 if (double.TryParse(outputDuration, out double duration))
                 {
                     return duration;
@@ -109,5 +115,21 @@ namespace ComprASS
             MessageBox.Show("Готово");
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Проверяем, есть ли активные процессы ffmpeg
+            if (activeProcesses.Count > 0)
+            {
+                // Завершаем все активные процессы ffmpeg
+                foreach (var process in activeProcesses)
+                {
+                    if (!process.HasExited)
+                    {
+                        process.Kill(); // Принудительно завершаем процесс
+                        GC.Collect();
+                    }
+                }
+            }
+        }
     }
 }
