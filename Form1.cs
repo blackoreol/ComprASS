@@ -39,6 +39,7 @@ namespace ComprASS
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     inputFilePath = openFileDialog.FileName;
+                    label1.Visible = true;  
                 }
             }
         }
@@ -99,6 +100,7 @@ namespace ComprASS
                 MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
                 return;
             }
+            speed = trackBar1.Value;
             pictureBox1.Image = Resources.billy_herrington_flex;
             string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
             string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
@@ -130,6 +132,11 @@ namespace ComprASS
                     }
                 }
             }
+        }
+
+        private void speed2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            trackBar1.Visible = true;
         }
     }
 }
