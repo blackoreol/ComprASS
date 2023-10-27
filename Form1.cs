@@ -12,7 +12,7 @@ namespace ComprASS
     {
         private string inputFilePath;
         private string outputFilePath;
-        private List<Process> activeProcesses = new List<Process>();
+        private readonly List<Process> activeProcesses = new List<Process>();
 
         public Form1()
         {
@@ -134,7 +134,7 @@ namespace ComprASS
             }
         }
 
-        private void speed2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Speed2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             trackBar1.Visible = true;
         }

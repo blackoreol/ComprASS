@@ -143,7 +143,7 @@
             this.speed2ToolStripMenuItem.Name = "speed2ToolStripMenuItem";
             this.speed2ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.speed2ToolStripMenuItem.Text = "Speed2";
-            this.speed2ToolStripMenuItem.Click += new System.EventHandler(this.speed2ToolStripMenuItem_Click);
+            this.speed2ToolStripMenuItem.Click += new System.EventHandler(this.Speed2ToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
