@@ -37,10 +37,10 @@
             this.Speed2toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.Speed4toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Speed10toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.speed2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lETSGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.speed2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -92,7 +92,7 @@
             this.Speed4toolStripMenuItem3,
             this.Speed10toolStripMenuItem4});
             this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
-            this.speedToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.speedToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.speedToolStripMenuItem.Text = "Speed";
             // 
             // Speed2toolStripMenuItem2
@@ -116,6 +116,13 @@
             this.Speed10toolStripMenuItem4.Text = "10";
             this.Speed10toolStripMenuItem4.Click += new System.EventHandler(this.Speed10toolStripMenuItem4_Click);
             // 
+            // speed2ToolStripMenuItem
+            // 
+            this.speed2ToolStripMenuItem.Name = "speed2ToolStripMenuItem";
+            this.speed2ToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.speed2ToolStripMenuItem.Text = "Speed2";
+            this.speed2ToolStripMenuItem.Click += new System.EventHandler(this.Speed2ToolStripMenuItem_Click);
+            // 
             // lETSGOToolStripMenuItem
             // 
             this.lETSGOToolStripMenuItem.Name = "lETSGOToolStripMenuItem";
@@ -138,13 +145,6 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // speed2ToolStripMenuItem
-            // 
-            this.speed2ToolStripMenuItem.Name = "speed2ToolStripMenuItem";
-            this.speed2ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.speed2ToolStripMenuItem.Text = "Speed2";
-            this.speed2ToolStripMenuItem.Click += new System.EventHandler(this.Speed2ToolStripMenuItem_Click);
-            // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(203, 31);
@@ -152,6 +152,7 @@
             this.trackBar1.Size = new System.Drawing.Size(104, 56);
             this.trackBar1.TabIndex = 3;
             this.trackBar1.Visible = false;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label1
             // 

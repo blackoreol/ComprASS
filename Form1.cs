@@ -12,24 +12,23 @@ namespace ComprASS
     {
         private string inputFilePath;
         private string outputFilePath;
-        private readonly List<Process> activeProcesses = new List<Process>();
-
+        private List<Process> activeProcesses = new List<Process>();
+        private double speed = 1;
         public Form1()
         {
             InitializeComponent();
         }
-        private int speed;
         private void Speed2toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            speed = 2;
+            speed = 2.0;
         }
         private void Speed4toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            speed = 4;
+            speed = 4.0;
         }
         private void Speed10toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            speed = 10;
+            speed = 10.0;
         }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -100,7 +99,6 @@ namespace ComprASS
                 MessageBox.Show("Пожалуйста, выберите входной и выходной файлы.");
                 return;
             }
-            speed = trackBar1.Value;
             pictureBox1.Image = Resources.billy_herrington_flex;
             string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
             string ffprobePath = Path.Combine(Application.StartupPath, "ffmpeg", "ffprobe.exe");
@@ -137,6 +135,11 @@ namespace ComprASS
         private void Speed2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             trackBar1.Visible = true;
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            speed = trackBar1.Value;
         }
     }
 }
