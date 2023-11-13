@@ -145,7 +145,7 @@ namespace ComprASS
                 outLenght = length.ToString()+" кб";
             else
             {
-                length = length / 1000;
+                length /= 1000;
                 outLenght = length.ToString() + " мб";
             }
             label3.Visible = true;
