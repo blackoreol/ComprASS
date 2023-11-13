@@ -10,7 +10,7 @@ namespace ComprASS
 {
     public partial class Form1 : Form
     {
-        private string outDur;
+        private string outLenght;
         private string formattedDur;
         private string debugDur;
         private string inputFilePath;
@@ -105,6 +105,10 @@ namespace ComprASS
             }
             label1.Visible = false;
             Label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            tooltipStatus.Visible = false;
+            flowLayoutPanel1.Visible = false;
             trackBar1.Visible = false;
             pictureBox1.Image = Resources.billy_herrington_flex;
             string ffmpegPath = Path.Combine(Application.StartupPath, "ffmpeg", "ffmpeg.exe");
@@ -138,15 +142,16 @@ namespace ComprASS
             }
             double length = new System.IO.FileInfo(outputFilePath).Length/1000; // считаем в киллобайтах
             if (length < 1000)
-            outDur = length.ToString()+" кб";
+                outLenght = length.ToString()+" кб";
             else
             {
                 length = length / 1000;
-                outDur = length.ToString() + " мб";
+                outLenght = length.ToString() + " мб";
             }
             label3.Visible = true;
+            label4.Visible = true;
             label3.Text = ("Длина на выходе: " + formattedDur + " сек");
-            label4.Text = ("Вес на выходе: " + outDur);
+            label4.Text = ("Вес на выходе: " + outLenght);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
