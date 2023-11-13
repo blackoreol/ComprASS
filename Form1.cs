@@ -12,7 +12,7 @@ namespace ComprASS
     {
         private string inputFilePath;
         private string outputFilePath;
-        private List<Process> activeProcesses = new List<Process>();
+        private readonly List<Process> activeProcesses = new List<Process>();
         private double speed = 1;
         public Form1()
         {
@@ -137,7 +137,7 @@ namespace ComprASS
             trackBar1.Visible = true;
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void TrackBar1_ValueChanged(object sender, EventArgs e)
         {
             speed = trackBar1.Value;
         }
