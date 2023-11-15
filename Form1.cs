@@ -150,7 +150,7 @@ namespace ComprASS
             }
             label3.Visible = true;
             label4.Visible = true;
-            label3.Text = ("Длина на выход1е: " + formattedDur + " сек");
+            label3.Text = ("Длина на выходе: " + formattedDur + " сек");
             label4.Text = ("Вес на выходе: " + outLenght);
         }
 
