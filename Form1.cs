@@ -16,7 +16,7 @@ namespace ComprASS
         private string inputFilePath;
         private string outputFilePath;
         private readonly List<Process> activeProcesses = new List<Process>();
-        private double speed = 1;
+        private double speed = 1.0;
         public Form1()
         {
             InitializeComponent();
