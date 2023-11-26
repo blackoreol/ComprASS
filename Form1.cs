@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace ComprASS
 {
     public partial class Form1 : Form
@@ -128,6 +127,9 @@ namespace ComprASS
             tooltipStatus.Text = "Успешно";
             tooltipStatus.BackColor = System.Drawing.Color.Green;
             tooltipStatus.Visible = true;
+            long totalMemory = GC.GetTotalMemory(false);
+            GC.Collect();                       //очистка памяти
+            GC.WaitForPendingFinalizers();
             int dotIndex = debugDur.IndexOf('.');
             if (dotIndex != -1)
             {
@@ -142,11 +144,11 @@ namespace ComprASS
             }
             double length = new System.IO.FileInfo(outputFilePath).Length/1000; // считаем в киллобайтах
             if (length < 1000)
-                outLenght = length.ToString()+" кб";
+                outLenght = $"{length}0 кб";
             else
             {
                 length /= 1000;
-                outLenght = length.ToString() + " мб";
+                outLenght = $"{length}0 мб";
             }
             label3.Visible = true;
             label4.Visible = true;
