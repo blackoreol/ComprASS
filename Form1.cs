@@ -127,9 +127,9 @@ namespace ComprASS
             tooltipStatus.Text = "Успешно";
             tooltipStatus.BackColor = System.Drawing.Color.Green;
             tooltipStatus.Visible = true;
-            long totalMemory = GC.GetTotalMemory(false);
-            GC.Collect();                       //очистка памяти
-            GC.WaitForPendingFinalizers();
+            //long totalMemory = GC.GetTotalMemory(false);
+            GC.Collect();                        //очистка памяти
+            GC.WaitForPendingFinalizers();       //очистка памяти
             int dotIndex = debugDur.IndexOf('.');
             if (dotIndex != -1)
             {
